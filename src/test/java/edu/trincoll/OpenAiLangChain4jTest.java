@@ -28,26 +28,24 @@ public class OpenAiLangChain4jTest {
         ChatResponse response = chatModel.chat(ChatRequest.builder()
                 .messages(List.of(
                         new UserMessage("""
-                    What is the Ultimate Answer to
-                    the Ultimate Question of
-                    Life, the Universe, and Everything?""")))
+                    What holiday is on May 4th
+                    ?""")))
                 .build());
         System.out.println(response.aiMessage().text());
         System.out.println(response.tokenUsage());
     }
 
     @Test
-    void chatWithString() {
+   void chatWithString() {
         String answer = chatModel.generate("""
-                Who is the best musician of the
-                2010s?
+                name the fastest vehicle in the world currently?
                 """);
         System.out.println(answer);
     }
 
     @Test
     void visionChat() {
-        String imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg";
+        String imageUrl = "https://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/img/car_3.png";
         Response<AiMessage> response = chatModel.generate(
                 UserMessage.from(
                         ImageContent.from(imageUrl),
